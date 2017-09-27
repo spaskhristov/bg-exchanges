@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.org/schema/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" template="/layout/template.xhtml">
+	<ui:define name="head">
+		<title>#{msg['news']}</title>
+		<script type="text/javascript">
+	    function setSize() {
+		    document.getElementById('form:sizeWidth').value = window.innerWidth;
+		    console.log("load event detected! " + window.innerWidth);
+		    document.getElementById('form:button').click();
+	    }
+	    window.onload = setSize;
+	</script>
+	</ui:define>
+	<ui:param name="activeIndex" value="2" />
+	<ui:define name="body">
+		<p:panel styleClass="news-panel">
+			<h:form id="form">
+				<p:commandButton id="button" value="" style="display: none"
+					action="#{beanRSS.action()}" update="sizeWidth" />
+				<h:inputHidden id="sizeWidth" />
+				<ui:include src="/layout/include-carousel.xhtml">
+					<ui:param name="messages"
+						value="#{language.localeBG ? beanRSS.messages1BG : beanRSS.messages1EN}" />
+					<ui:param name="header" value="#{msg['msg1.title']}" />
+				</ui:include>
+				<ui:include src="/layout/include-carousel.xhtml">
+					<ui:param name="messages"
+						value="#{language.localeBG ? beanRSS.messages2BG : beanRSS.messages2EN}" />
+					<ui:param name="header" value="#{msg['msg2.title']}" />
+				</ui:include>
+				<ui:include src="/layout/include-carousel.xhtml">
+					<ui:param name="messages"
+						value="#{language.localeBG ? beanRSS.messages3BG : beanRSS.messages3EN}" />
+					<ui:param name="header" value="#{msg['msg3.title']}" />
+				</ui:include>
+			</h:form>
+		</p:panel>
+	</ui:define>
+</ui:composition>

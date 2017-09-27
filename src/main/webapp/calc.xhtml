@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.org/schema/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" template="/layout/template.xhtml">
+	<ui:define name="head">
+		<title>#{msg['tag.calc']}</title>
+	</ui:define>
+	<ui:param name="activeIndex" value="3" />
+	<ui:define name="body">
+		<h:form>
+			<ui:include src="/layout/calc-panel.xhtml" />
+			<p:dataTable value="#{beanExchange.institutionsClient.institutionsClient}" var="items"
+				emptyMessage="#{msg['no.data']}" id="calcTable" styleClass="panel-margin">
+				<f:facet name="header">
+					<h:outputText
+						value="#{msg['last.refresh']}#{beanExchange.lastRefresh}" />
+					<br />
+					<h:outputText value="#{msg['ex.rate']}" />
+				</f:facet>
+				<p:column width="40%" headerText="#{msg['bank.change']}"
+					sortBy="#{items.name}" styleClass="align-left">
+					<p:button icon="fa fa fa-money" title="#{msg['change']}"
+						disabled="true" rendered="#{items.type.name().equals('change')}" />
+					<p:button icon="fa fa-bank" title="#{msg['bank']}" disabled="true"
+						rendered="#{items.type.name().equals('bank')}" />
+					<p:link value="#{language.localeBG ? items.name : items.nameEn}"
+						href="#{items.url}" />
+				</p:column>
+				<p:column
+					headerText="#{msg['rate.calc']} #{beanExchange.institutionsClient.buy ? beanExchange.buyCurrType : beanExchange.fromCurrType}"
+					sortBy="#{items.rateForOne}" styleClass="aligncenter">
+					<h:outputText value="#{items.rateForOne}" />
+				</p:column>
+				<p:column
+					headerText="#{msg['rate']} #{msg['for']} #{beanExchange.institutionsClient.buy ? beanExchange.rateBuy : beanExchange.rate} #{beanExchange.institutionsClient.buy ? beanExchange.buyCurrType : beanExchange.fromCurrType}"
+					sortBy="#{items.rate}"
+					styleClass="#{beanExchange.equalsRateRed(items.rate) ? 'red-center' : (beanExchange.equalsRateGreen(items.rate) ? 'green-center' : 'aligncenter')}">
+					<h:outputText value="#{items.rate}" />
+				</p:column>
+				<p:column sortBy="#{items.rate}" headerText="#{msg['profit']}"
+					styleClass="#{beanExchange.equalsRateRed(items.rate) ? 'red-center' : (beanExchange.equalsRateGreen(items.rate) ? 'green-center' : 'aligncenter')}">
+					<h:outputText value="#{beanExchange.getSubResult(items.rate)}" />
+				</p:column>
+				<p:column headerText="#{msg['currency']}">
+					<h:outputText
+						value="#{beanExchange.institutionsClient.buy ? 'BGN' : beanExchange.toCurrType}" />
+				</p:column>
+				<p:column headerText="#{msg['tag.maps']}">
+					<p:commandButton value="#{msg['view.maps']}"
+						action="#{beanMaps.onclickSetMap(items.nameEn)}" ajax="false" />
+				</p:column>
+			</p:dataTable>
+		</h:form>
+		<p:panel styleClass="panel-text panel-margin">
+			<h:outputText value="#{msg['legend']}:" />
+			<span class="red-width-150"><h:outputText
+					value="#{msg['unprofitable']}" /> </span>
+			<span class="green-width-150"><h:outputText
+					value="#{msg['profitable']}" /> </span>
+			<p:separator />
+			<p:outputLabel value="#{msg['text.calc']}" />
+		</p:panel>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.org/schema/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" template="/layout/template.xhtml">
+	<ui:define name="head">
+		<title>#{msg['statistic']}</title>
+	</ui:define>
+	<ui:param name="activeIndex" value="4" />
+	<ui:define name="body">
+		<p:panel>
+			<h:form>
+				<h:panelGrid columns="7" styleClass="statisticPanel">
+					<p:outputLabel for="objectID" value="#{msg['bank.change']}" />
+					<p:selectOneMenu id="objectID" value="#{beanLineChart.idObject}">
+						<f:selectItems value="#{beanLineChart.institutions}" var="inst" 
+						itemLabel="#{language.localeBG ? inst.name : inst.nameEn}" itemValue="#{inst.id}" />
+					</p:selectOneMenu>
+					<p:outputLabel for="rate" value="#{msg['statistic.rate']}" />
+					<p:selectOneMenu id="rate" value="#{beanLineChart.buy}">
+						<f:selectItem itemLabel="#{msg['buy']}" itemValue="true" />
+						<f:selectItem itemLabel="#{msg['sell']}" itemValue="false" />
+					</p:selectOneMenu>
+					<p:outputLabel for="currency" value="#{msg['statistic.currency']}" />
+					<p:selectOneMenu id="currency" value="#{beanLineChart.currencyType}">
+						<f:selectItem itemLabel="USD" itemValue="USD" />
+						<f:selectItem itemLabel="EUR" itemValue="EUR" />
+						<f:selectItem itemLabel="CHF" itemValue="CHF" />
+						<f:selectItem itemLabel="GBP" itemValue="GBP" />
+					</p:selectOneMenu>
+					<p:commandButton value="#{msg['statistic.show']}" actionListener="#{beanLineChart.showChartAction()}" ajax="false" />
+				</h:panelGrid>
+				<p:chart rendered="#{beanLineChart.showChart}" type="line" model="#{beanLineChart.dateModel}" style="height:400px;" />
+			</h:form>
+		</p:panel>
+	</ui:define>
+</ui:composition>

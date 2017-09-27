@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:k="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions" contentType="text/html"
+	locale="#{language.locale}">
+	<html>
+<h:head>
+	<ui:insert name="head" />
+	<meta name="description"
+		content="Сравнение между валутни курсове на банки и обменни бюра" />
+	<meta name="author" content="Спас Христов" />
+	<meta charset="UTF-8" />
+	<meta name="keywords"
+		content="валутни,курсове,банки,обменни,бюра,чейндж,банка,калкулатор,сравнение" />
+	<meta name="Robots" content="index, follow" />
+	<meta name="Googlebot" content="index, follow" />
+	<meta name="Revisit-After" content="1 day" />
+	<meta name="Rating" content="general" />
+	<meta property="og:title"
+		content="Валутни курсове на Банки и Обменни бюра" />
+	<meta property="og:description"
+		content="Сравняване на валутните курсове в България на банки и обменни бюра" />
+	<meta property="og:image"
+		content="resources/images/Exchange_Arrows-256.png" />
+	<link rel="shortcut icon" type="image/x-icon"
+		href="resources/images/exchange.ico" />
+	<link rel="stylesheet" href="resources/styles/style.css"
+		type="text/css" />
+	<script type="text/javascript" src="resources/js/main.js" />
+	<script>
+  		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ 		 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  		ga('create', 'UA-75054429-1', 'auto');
+ 		 ga('send', 'pageview');
+	</script>
+	<!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<script type="text/javascript">
+    	window.cookieconsent_options = {"message":"#{msg['mess.cooke']}","dismiss":"#{msg['understood']}","learnMore":"","link":"","theme":"light-bottom"};
+	</script>
+	<script type="text/javascript"
+		src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.9/cookieconsent.min.js"></script>
+	<!-- End Cookie Consent plugin -->
+</h:head>
+<h:body>
+	<div class="phone-message" >
+        <p class="p-message">#{msg['phone-message']}</p>
+    	<a href="https://play.google.com/store/apps/details?id=com.gmail.spaskhristov.exchange.bg_exchanges">
+            <img src="resources/images/play-g.png" />
+        </a>
+        <a class="boxclose" >×</a>
+    </div>
+	<p:growl id="growl" life="3000" />
+	<p:tabMenu activeIndex="#{activeIndex}">
+		<p:menuitem value="#{msg['ex.rate']}" outcome="index.xhtml"
+			ajax="true" icon="fa fa-exchange">
+		</p:menuitem>
+		<p:menuitem value="#{msg['other']}" outcome="other.xhtml" ajax="true"
+			icon="fa fa-exchange">
+		</p:menuitem>
+		<p:menuitem value="#{msg['news']}" outcome="news.xhtml" ajax="true"
+			icon="fa fa-newspaper-o">
+		</p:menuitem>
+		<p:menuitem value="#{msg['calc']}" outcome="calc.xhtml" ajax="true"
+			icon="fa fa-calculator">
+		</p:menuitem>
+		<p:menuitem value="#{msg['statistic']}" outcome="statistic.xhtml"
+			ajax="true" icon="fa fa-line-chart">
+		</p:menuitem>
+	</p:tabMenu>
+	<h:form styleClass="float-right" id="formmap">
+		<p:commandButton styleClass="bg-btn" value=""
+			action="#{language.countryLocaleBG()}" ajax="false" />
+		<p:commandButton styleClass="en-btn" value=""
+			action="#{language.countryLocaleEN()}" ajax="false" />
+	</h:form>
+	<div id="main-container">
+		<p:outputPanel id="content" styleClass="content">
+			<p:messages autoUpdate="true" closable="true" globalOnly="true"
+				showIcon="false" id="messages" styleClass="pre-wrap-msg" />
+			<p:ajaxStatus onstart="PF('statusDialog').show()"
+				onsuccess="PF('statusDialog').hide()" />
+			<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
+				closable="false" resizable="false" showHeader="false">
+				<p:graphicImage url="resources/images/ajax-loading-bar.gif" />
+			</p:dialog>
+			<ui:insert name="body" />
+		</p:outputPanel>
+	</div>
+</h:body>
+	</html>
+</f:view>
