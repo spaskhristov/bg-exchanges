@@ -1,0 +1,265 @@
+td {
+	text-align: center;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+tr:nth-child(even) {
+	background: #e5e5e5;
+}
+
+tr:nth-child(odd) {
+	background: #f4f4f4;
+}
+
+tr:nth-child(even):HOVER, tr:nth-child(odd):HOVER {
+	background: #d6d6d6;
+}
+
+.red-center {
+	background: #FF9E9E;
+	text-align: center;
+}
+
+.green-center {
+	background: #88DCAC;
+	text-align: center;
+}
+
+.aligncenter {
+	text-align: center;
+}
+
+.aligncenter-bold {
+	text-align: center;
+	font-weight: bold;
+}
+
+.width-150 {
+	width: 84%;
+}
+
+.red-width-150 {
+	display: inline-block;
+	background: #FF9E9E;
+	width: 170px;
+	text-align: center;
+	font-weight: bold;
+}
+
+.green-width-150 {
+	display: inline-block;
+	background: #88DCAC;
+	width: 170px;
+	text-align: center;
+	font-weight: bold;
+}
+
+.bg-btn {
+	width: 24px;
+	height: 16px;
+	background: url(../images/bg.png);
+}
+
+.en-btn {
+	width: 24px;
+	height: 16px;
+	background: url(../images/en.gif);
+}
+
+.float-right {
+	float: right;
+}
+
+.error {
+	margin: 0 auto;
+	display: block;
+}
+
+.intern {
+	margin: 0 auto;
+	display: block;
+	width: 100%;
+	height: 400px;
+	overflow: hidden;
+}
+
+.pubdata {
+	font-size: 0.7em;
+	color: black;
+}
+
+.title {
+	font-weight: bold;
+	color: #e69700;
+}
+
+.link {
+	text-decoration: none;
+}
+
+.text {
+	font-size: 0.9em;
+}
+
+.news-panel {
+	padding-top: 50px;
+}
+
+.booking {
+	display: inline-block;
+	margin: 0.6%;
+}
+
+.panel-text {
+	display: block;
+	font-size: 0.8em !important;
+}
+
+.image {
+	width: 264px;
+	height: 200px;
+}
+
+.fb-comments, .fb-comments span[style], .fb-comments iframe[style] {
+	width: 80% !important;
+}
+
+#adwise {
+	clear: none;
+	float: right;
+}
+
+@media only screen and (max-width: 720px) , only screen and
+	(max-device-width: 720px) {
+	.panel-text {
+		display: none;
+	}
+}
+
+@media only screen and (max-width: 1200px) , only screen and
+	(max-device-width: 1200px) {
+	.calcPanel {
+		width: 90% !important;
+	}
+	.fb-comments, .fb-comments span[style], .fb-comments iframe[style] {
+		width: 80% !important;
+	}
+}
+
+.color-buy {
+	color: #2293f7;
+}
+
+.color-sell {
+	color: #e69700;
+}
+
+.align-left {
+	text-align: left;
+}
+
+.calcPanel {
+	width: 48%;
+	margin: 0.6%;
+	table-layout: fixed;
+}
+
+.calcPanel tr:nth-child(even), .calcPanel tr:nth-child(odd),
+	.statisticPanel tr:nth-child(even), .statisticPanel tr:nth-child(odd) {
+	background: none !important;
+}
+
+.statisticPanel {
+	margin: 0.6%;
+}
+
+.calcPanel td:nth-child(2) {
+	text-align: left;
+}
+
+.calcPanel td:nth-child(1) {
+	text-align: left;
+}
+
+.calcPanel td:nth-child(4) {
+	width: 5%;
+}
+
+.calcPanelFieldWidth80 {
+	width: 80%;
+}
+
+.calcPanelFieldWidth90 {
+	width: 90%;
+}
+
+.calcPanelFieldWidth102 {
+	width: 102%;
+}
+
+.ui-tabmenu {
+	border: none;
+}
+
+.panelCalcBook {
+	padding: 0;
+}
+
+.panel-margin {
+	margin: 10px;
+}
+
+.ui-datatable .ui-datatable-header {
+	border: 0 none;
+}
+
+.panel-margin-bottom {
+	margin-bottom: 10px;
+}
+
+.ui-icon {
+	margin-right: 5px;
+}
+
+.facebook-icon {
+	margin-right: 5px;
+}
+
+.ui-state-active {
+	color: #BF6E26;
+}
+
+.baner {
+	display: inline-block;
+}
+
+a.boxclose {
+	float: right;
+	margin-top: -50px;
+	margin-right: 0px;
+	cursor: pointer;
+	color: #fff;
+	border: 1px solid #AEAEAE;
+	border-radius: 30px;
+	background: #605F61;
+	font-size: 31px;
+	font-weight: bold;
+	display: inline-block;
+	line-height: 0px;
+	padding: 11px 3px;
+	margin-right: 0px;
+}
+
+.phone-message {
+	border: 1px solid #a6c9e2;
+	border-radius: 5px 15px 5px 5px;
+	text-align: center;
+	display: none;
+}
+
+.p-message {
+	ext-align: center;
+	font-family: Lucida Grande, Lucida Sans, Arial, sans-serif;
+	color: #e17009;
+}

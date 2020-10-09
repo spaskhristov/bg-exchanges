@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.org/schema/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" template="/layout/template.xhtml">
+	<ui:define name="head">
+		<title>#{msg['tag.index']}</title>
+	</ui:define>
+	<ui:define name="body">
+		<h:form id="form">
+			<ui:include src="/layout/calc-panel.xhtml" />
+			<p:dataTable value="#{beanExchange.institutions}" var="items"
+				emptyMessage="#{msg['no.data']}" id="datalist"
+				styleClass="panel-margin">
+				<f:facet name="header">
+					<h:outputText
+						value="#{msg['last.refresh']}#{beanExchange.lastRefresh}" />
+					<br />
+					<h:outputText value="#{msg['ex.rate']}" />
+				</f:facet>
+				<p:column headerText="ID" width="40" sortBy="#{items.id}">
+					<h:outputText value="#{items.id}" />
+				</p:column>
+				<p:column headerText="#{msg['bank.change']}" width="25%"
+					sortBy="#{items.name}" styleClass="align-left">
+					<p:button icon="fa fa-money" title="#{msg['change']}"
+						disabled="true" rendered="#{items.type.name().equals('change')}" />
+					<p:button icon="fa fa-bank" title="#{msg['bank']}" disabled="true"
+						rendered="#{items.type.name().equals('bank')}" />
+					<p:link value="#{language.localeBG ? items.name : items.nameEn}"
+						href="#{items.urlStr}" target="_blank" />
+				</p:column>
+				<p:column headerText="USD #{msg['buy']}"
+					sortBy="#{items.buy('USD')}">
+					<h:outputText value="#{items.buy('USD')}" styleClass="color-buy" />
+				</p:column>
+				<p:column headerText="USD #{msg['sell']}"
+					sortBy="#{items.sell('USD')}" styleClass="color-sell">
+					<h:outputText value="#{items.sell('USD')}" />
+				</p:column>
+				<p:column headerText="EUR #{msg['buy']}"
+					sortBy="#{items.buy('EUR')}">
+					<h:outputText value="#{items.buy('EUR')}" styleClass="color-buy" />
+				</p:column>
+				<p:column headerText="EUR #{msg['sell']}"
+					sortBy="#{items.sell('EUR')}" styleClass="color-sell">
+					<h:outputText value="#{items.sell('EUR')}" />
+				</p:column>
+				<p:column headerText="CHF #{msg['buy']}"
+					sortBy="#{items.buy('CHF')}">
+					<h:outputText value="#{items.buy('CHF')}" styleClass="color-buy" />
+				</p:column>
+				<p:column headerText="CHF #{msg['sell']}"
+					sortBy="#{items.sell('CHF')}" styleClass="color-sell">
+					<h:outputText value="#{items.sell('CHF')}" />
+				</p:column>
+				<p:column headerText="GBP #{msg['buy']}"
+					sortBy="#{items.buy('GBP')}">
+					<h:outputText value="#{items.buy('GBP')}" styleClass="color-buy" />
+				</p:column>
+				<p:column headerText="GBP #{msg['sell']}"
+					sortBy="#{items.sell('GBP')}" styleClass="color-sell">
+					<h:outputText value="#{items.sell('GBP')}" />
+				</p:column>
+			</p:dataTable>
+			<p:dataTable value="#{beanExchange.fixingBNB}" var="fixing"
+				styleClass="panel-margin">
+				<f:facet name="header">
+					<h:outputText value="#{msg['fixing.BNG']}" />
+				</f:facet>
+				<p:column width="40">
+				</p:column>
+				<p:column width="25%" styleClass="align-left">
+					<p:button icon="fa fa-bank" title="#{msg['bank']}" disabled="true" />
+					<p:link value="#{msg['BNB']}" target="_blank"
+						href="http://www.bnb.bg/Statistics/StExternalSector/StExchangeRates/StERForeignCurrencies/" />
+				</p:column>
+				<p:column headerText="USD" colspan="2">
+					<h:outputText value="#{fixing.reference('USD')}" />
+				</p:column>
+				<p:column headerText="EUR" colspan="2">
+					<h:outputText value="#{fixing.reference('EUR')}" />
+				</p:column>
+				<p:column headerText="CHF" colspan="2">
+					<h:outputText value="#{fixing.reference('CHF')}" />
+				</p:column>
+				<p:column headerText="GBP" colspan="2">
+					<h:outputText value="#{fixing.reference('GBP')}" />
+				</p:column>
+			</p:dataTable>
+			<div class="aligncenter-bold">
+				<p:commandButton value="#{msg['reloaded']}" icon="ui-icon-refresh"
+					process="@form" update="@form" />
+				<p:commandButton value="#{msg['export']}" icon="fa fa-file-excel-o"
+					ajax="false">
+					<p:dataExporter type="xls" target="datalist" fileName="institutions"
+						postProcessor="#{beanExchange.postProcessXLS}"
+						preProcessor="#{beanExchange.preProcessXLS}" />
+				</p:commandButton>
+			</div>
+		</h:form>
+		<p:panel styleClass="panel-text panel-margin">
+			<p:outputLabel value="#{msg['text1.index']}" />
+			<p:link value="bg-exchanges.rhcloud.com/rest/"
+				href="http://bg-exchanges.rhcloud.com/rest/" target="_blank" />
+			<p:outputLabel value="#{msg['text2.index']}" />
+		</p:panel>
+	</ui:define>
+</ui:composition>

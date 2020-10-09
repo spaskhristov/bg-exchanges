@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.org/schema/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+	<p:panel styleClass="panelCalcBook">
+		<h:panelGrid columns="6" styleClass="calcPanel">
+			<p:outputLabel for="rate" value="#{msg['calc.wantExchange']}" />
+			<p:inputText id="rate" value="#{beanExchange.rate}" required="true"
+				styleClass="calcPanelFieldWidth90">
+				<f:validateDoubleRange minimum="1" maximum="1000000000" />
+			</p:inputText>
+			<p:selectOneMenu id="currencyFrom"
+				value="#{beanExchange.fromCurrType}"
+				styleClass="calcPanelFieldWidth80">
+				<p:ajax listener="#{beanExchange.onCurrencyTypeFromChange()}"
+					update="currencyTo" />
+				<f:selectItems value="#{beanExchange.getAllCurrencyTypeFrom()}"
+					var="f" itemValue="#{f}"
+					itemLabel="#{language.localeBG ? f.toString() : f.name()}" />
+			</p:selectOneMenu>
+			<p:outputLabel for="currencyTo" value="#{msg['for.panel']}" />
+			<p:selectOneMenu id="currencyTo" value="#{beanExchange.toCurrType}"
+				styleClass="calcPanelFieldWidth80">
+				<f:selectItems value="#{beanExchange.getAllCurrencyTypeTo()}"
+					var="t" itemValue="#{t}"
+					itemLabel="#{language.localeBG ? t.toString() : t.name()}" />
+			</p:selectOneMenu>
+			<p:commandButton value="#{msg['calcule']}"
+				actionListener="#{beanExchange.calcCurrency()}"
+				icon="fa fa-calculator" ajax="false" update="@growl"
+				action="calc?faces-redirect=true" styleClass="calcPanelFieldWidth80" />
+			<p:outputLabel for="rateBuy" value="#{msg['calc.wantBuy']}" />
+			<p:inputText id="rateBuy" value="#{beanExchange.rateBuy}"
+				required="true" styleClass="calcPanelFieldWidth90">
+				<f:validateDoubleRange minimum="1" maximum="1000000000" />
+			</p:inputText>
+			<p:selectOneMenu id="currencyBuy" value="#{beanExchange.buyCurrType}"
+				styleClass="calcPanelFieldWidth80">
+				<f:selectItems value="#{beanExchange.getAllCurrencyTypeBuy()}"
+					var="b" itemValue="#{b}"
+					itemLabel="#{language.localeBG ? b.toString() : b.name()}" />
+			</p:selectOneMenu>
+			<p:outputLabel for="currencyBuy" value=" " />
+			<p:commandButton value="#{msg['calcule']}"
+				actionListener="#{beanExchange.calcCurrencyBuy()}"
+				icon="fa fa-calculator" ajax="false"
+				action="calc?faces-redirect=true"
+				styleClass="calcPanelFieldWidth102" />
+		</h:panelGrid>
+		<h:outputLink value="http://www.sportnazona.net"
+			onclick="trackOutboundLink('http://www.sportnazona.net'); return false;">
+			<h:graphicImage styleClass="baner"
+				value="resources/images/baner132x170.gif" />
+		</h:outputLink>
+		<div class="booking">
+			<ins data-currency="BGN" data-lang="bg" class="bookingaff"
+				data-aid="964033" data-target_aid="964020" data-prod="sbp"
+				data-width="698" data-height="170">
+				<!-- Anything inside will go away once widget is loaded. -->
+				<a href="//www.booking.com?aid=964020">Booking.com</a>
+			</ins>
+			<script type="text/javascript">
+    		(function(d, sc, u) {
+		      var s = d.createElement(sc), p = d.getElementsByTagName(sc)[0];
+		      s.type = 'text/javascript';
+		      s.async = true;
+		      s.src = u + '?v=' + (+new Date());
+		      p.parentNode.insertBefore(s,p);
+		      })(document, 'script', '//aff.bstatic.com/static/affiliate_base/js/flexiproduct.js');
+		      var trackOutboundLink = function(url) {
+	   			    ga('send', 'event', 'outbound', 'click', url, {
+	   			    'transport': 'beacon',
+	   			  'hitCallback': function(){window.open(url, '_blank');}
+	   			});
+	   		  }
+		</script>
+		</div>
+	</p:panel>
+</ui:composition>

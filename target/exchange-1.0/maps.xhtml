@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.org/schema/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" template="/layout/template.xhtml">
+	<ui:define name="head">
+		<script src="http://maps.google.com/maps/api/js?sensor=false"
+			type="text/javascript"></script>
+		<title>#{msg['tag.maps']}</title>
+	</ui:define>
+	<ui:param name="activeIndex" value="3" />
+	<ui:define name="body">
+		<p:panel styleClass="aligncenter-bold">
+			<h:outputText value="#{beanMaps.title}" style="color: #e69700;" />
+		</p:panel>
+		<p:panel>
+			<h:form id="form">
+				<p:gmap id="w_gmap" center="42.696536,23.318224" zoom="13"
+					type="ROADMAP" model="#{beanMaps.allModel}"
+					style="width:100%;height:700px">
+					<p:ajax event="overlaySelect" listener="#{beanMaps.onMarkerSelect}" />
+					<p:gmapInfoWindow id="infoWindow">
+						<p:outputPanel
+							style="text-align: center; display: block; margin: auto">
+							<h:outputText value="#{beanMaps.marker.title}" />
+						</p:outputPanel>
+					</p:gmapInfoWindow>
+				</p:gmap>
+			</h:form>
+		</p:panel>
+	</ui:define>
+</ui:composition>
