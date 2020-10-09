@@ -2,7 +2,7 @@ package com.gmail.spaskhristov.exchange.until;
 
 public final class Constants {
 
-  public final static int EXCEL_ROWS = 23;
+  public final static int EXCEL_ROWS = 19;
   public final static String URL_BNB =
       "http://www.bnb.bg/Statistics/StExternalSector/StExchangeRates/StERForeignCurrencies/";
   public final static String[] WORDS_USD = {"usd", "щатски", "1 usd"};

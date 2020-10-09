@@ -88,7 +88,7 @@ public class BeanRSS implements Serializable {
     @Override
     public void run() {
       List<News> messages1NewBG =
-          RSSReader.downloadAndParseNews("http://www.bgonair.bg/rss/economy");
+          RSSReader.downloadAndParseNews("https://www.bloombergtv.bg/rss/c/3-pazari");
       List<News> messages2NewBG =
           RSSReader.downloadAndParseNews("http://www.capital.bg/rss/?rubrid=2272");
       List<News> messages3NewBG =
