@@ -26,8 +26,8 @@
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.servlet:javax.servlet-api:3.0.1" level="project" />
     <orderEntry type="library" name="Maven: org.jboss.weld.servlet:weld-servlet:2.3.2.Final" level="project" />
     <orderEntry type="library" name="Maven: org.jsoup:jsoup:1.8.3" level="project" />
-    <orderEntry type="library" name="Maven: com.sun.faces:jsf-impl:2.2.4" level="project" />
-    <orderEntry type="library" name="Maven: com.sun.faces:jsf-api:2.2.4" level="project" />
+    <orderEntry type="library" name="Maven: com.sun.faces:jsf-impl:2.2.5" level="project" />
+    <orderEntry type="library" name="Maven: com.sun.faces:jsf-api:2.2.5" level="project" />
     <orderEntry type="library" name="Maven: org.primefaces:primefaces:5.3" level="project" />
     <orderEntry type="library" name="Maven: org.primefaces.extensions:all-themes:1.0.8" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.primefaces.themes:afterdark:1.0.8" level="project" />

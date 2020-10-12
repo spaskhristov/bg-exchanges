@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.org/schema/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" template="/layout/template.xhtml">
+	<ui:define name="head">
+		<title>#{msg['sitemap']}</title>
+	</ui:define>
+	<ui:param name="activeIndex" value="5" />
+	<ui:define name="body">
+		<p:panel styleClass="aligncenter-bold">
+			<h:panelGrid columns="2" cellpadding="10">
+				<p:link value="#{msg['ex.rate']}" href="index.html" id="id0" />
+				<p:outputLabel for="id0" value=" - #{msg['sitemap.index']}" />
+			</h:panelGrid>
+			<h:panelGrid columns="2" cellpadding="10">
+				<p:link value="#{msg['other']}" href="other.html" id="id1" />
+				<p:outputLabel for="id1" value=" - #{msg['sitemap.other']}" />
+			</h:panelGrid>
+			<h:panelGrid columns="2" cellpadding="10">
+				<p:link value="#{msg['news']}" href="news.html" id="id2" />
+				<p:outputLabel for="id2" value=" - #{msg['sitemap.news']}" />
+			</h:panelGrid>
+			<h:panelGrid columns="2" cellpadding="10">
+				<p:link value="#{msg['calc']}" href="calc.html" id="id3" />
+				<p:outputLabel for="id3" value=" - #{msg['sitemap.calc']}" />
+			</h:panelGrid>
+			<!--<h:panelGrid columns="2" cellpadding="10">
+				<p:link value="#{msg['statistic']}" href="statistic.html" id="id4" />
+				<p:outputLabel for="id4" value=" - #{msg['sitemap.stat']}" />
+			</h:panelGrid>-->
+			<h:panelGrid columns="2" cellpadding="10">
+				<p:link value="#{msg['sitemap']}" href="sitemap.html" id="id5" />
+				<p:outputLabel for="id5" value=" - #{msg['sitemap']}" />
+			</h:panelGrid>
+		</p:panel>
+	</ui:define>
+</ui:composition>
